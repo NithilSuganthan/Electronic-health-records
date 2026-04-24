@@ -20,16 +20,19 @@ public class TestController {
     public Map<String, Object> testConnection() {
         Map<String, Object> response = new HashMap<>();
         try {
-            // A simple query to check the database connection
-            // It queries the Doctor table created in your supabase_schema.sql
-            Integer doctorCount = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM doctor", Integer.class);
-            
+            // Try a simple query
+            Integer result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
             response.put("status", "SUCCESS");
-            response.put("message", "Connected to Supabase PostgreSQL successfully!");
-            response.put("doctorCount", doctorCount);
+            response.put("message", "Database connection is working!");
+            response.put("result", result);
         } catch (Exception e) {
             response.put("status", "ERROR");
-            response.put("message", "Failed to connect to the database: " + e.getMessage());
+            response.put("message", "Database connection failed");
+            // This will show us the REAL error (e.g. "Password failed" or "Timeout")
+            response.put("error_detail", e.getMessage());
+            if (e.getCause() != null) {
+                response.put("cause", e.getCause().getMessage());
+            }
         }
         return response;
     }
