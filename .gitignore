@@ -35,4 +35,4 @@ backend/target/
 backend/.mvn/
 backend/*.jar
 backend/*.war
-backend/src/main/resources/application.properties
+backend/src/main/resources/application-secrets.properties
