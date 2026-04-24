@@ -47,7 +47,7 @@ function App() {
         />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/admin-portal" element={<AdminLogin />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/" element={<Layout />}>
             {/* Shared - Dashboard & Prescriptions viewable by all */}
             <Route index element={<Dashboard />} />
