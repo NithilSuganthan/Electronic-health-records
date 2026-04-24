@@ -18,8 +18,10 @@ public class WebConfig implements WebMvcConfigurer {
             ? allowedOrigins.split(",") 
             : new String[]{"*"};
 
+        @SuppressWarnings("null")
+        String[] safeOrigins = origins;
         registry.addMapping("/api/**")
-                .allowedOrigins(origins)
+                .allowedOrigins(safeOrigins)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
