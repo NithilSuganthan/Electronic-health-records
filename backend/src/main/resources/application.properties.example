@@ -1,0 +1,31 @@
+# ==========================================
+# Application Configuration
+# ==========================================
+spring.application.name=ehr-backend
+server.port=${PORT:8080}
+
+# ==========================================
+# PostgreSQL Database Configuration (Supabase)
+# Copy this file to application.properties and fill in your values
+# ==========================================
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:postgresql://<YOUR-SUPABASE-HOST>:5432/postgres?prepareThreshold=0&sslmode=require}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:<YOUR-DB-PASSWORD>}
+
+# HikariCP Connection Pool Settings
+spring.datasource.hikari.maximum-pool-size=10
+spring.datasource.hikari.connection-timeout=20000
+
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# CORS config (set to your production frontend URL when hosting)
+cors.allowed.origins=${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+# ==========================================
+# Razorpay Configuration
+# ==========================================
+razorpay.api.key=${RAZORPAY_KEY:<YOUR-RAZORPAY-KEY>}
+razorpay.api.secret=${RAZORPAY_SECRET:<YOUR-RAZORPAY-SECRET>}
