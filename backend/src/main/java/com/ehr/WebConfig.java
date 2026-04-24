@@ -15,12 +15,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     @SuppressWarnings("null")
     public void addCorsMappings(@NonNull CorsRegistry registry) {
+        // Split comma-separated origins if provided
         String[] origins = (allowedOrigins != null && !allowedOrigins.isBlank())
             ? allowedOrigins.split(",")
-            : new String[]{"*"};
+            : new String[]{"http://localhost:5173", "https://electronic-health-records-xi.vercel.app"};
 
         registry.addMapping("/api/**")
-                .allowedOrigins(origins)
+                .allowedOriginPatterns(origins) // Use allowedOriginPatterns for better flexibility with credentials
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
